@@ -1,0 +1,17 @@
+{
+  "name": "Demo",
+  "short_name": "Demo",
+  "short_description": "Demo application",
+  "description": "Demo application",
+  "theme_color": "#333333",
+  "background_color": "#333333",
+  "display": "standalone",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/images/icon.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    }
+  ]
+}

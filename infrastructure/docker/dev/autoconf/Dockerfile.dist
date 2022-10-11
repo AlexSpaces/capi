@@ -1,0 +1,12 @@
+FROM alpine:edge as node-alpine-edge
+
+RUN apk add --upgrade --no-cache nodejs npm
+RUN apk add --upgrade --no-cache vim
+RUN apk add --upgrade --no-cache bash
+
+RUN mkdir -p /home/app
+WORKDIR /home/app
+
+COPY . /home/app
+
+CMD ["npm", "start"]
