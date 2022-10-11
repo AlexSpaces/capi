@@ -10,8 +10,7 @@
     "test": "mocha"
   },
   "dependencies": {
-    "@beelab/deployer": "^0.4.1",
-    "@beelab/fontawesome": "git+https://git.beelab.tk/beelab/fontawesome.git#master",
+    "@beelab/deployer": "^0.4.1",=
     "@beelab/toolbox": "^1.0",
     "@tamia-web/doc-plugin": "^0.1.0",
     "@tamia-web/tamia": "^0.1.2",
