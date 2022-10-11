@@ -3,13 +3,13 @@
         "openapi": "3.0.1",
         "info": {
             "version": "1.0.0",
-            "title": "Démo",
-            "description": "Démo API",
+            "title": "Cataas",
+            "description": "Cataas API",
             "termsOfService": "http://api_url/terms/",
             "contact": {
-                "name": "Tamia Team",
-                "email": "hello@tamia.com",
-                "url": "https://tamia.com/"
+                "name": "Kevin Balicot",
+                "email": "kevinbalicot@gmail.com",
+                "url": "https://cataas.com/"
             },
             "license": {
                 "name": "Apache 2.0",
@@ -18,26 +18,34 @@
         },
         "servers": [
             {
-                "url": "http://localhost:8081/api"
+              "url": "https://cataas.com/"
+            },
+            {
+                "url": "/"
             }
         ],
         "tags": [
             {
-                "name": "Truites",
-                "description": "Truites managing"
+                "name": "Cats",
+                "description": "Cat managing"
+            },
+            {
+              "name": "API",
+              "description": "Cat metadata"
             }
         ]
     },
 
     "models": [
-        "/config/models/items.json"
+        "/config/models/cat.json"
     ],
 
     "routes": [
-        "/config/routes/items.json"
+        "/config/routes/cats.json",
+        "/config/routes/api.json"
     ],
 
     "controllers": [
-        "/src/Controller/Item"
+        "/src/Controller/Cat"
     ]
 }

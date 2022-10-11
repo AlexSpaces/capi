@@ -1,0 +1,102 @@
+{
+  "paths": {
+    "/api/cats": {
+      "get": {
+        "description": "Will return all cats",
+        "tags": ["API"],
+        "operationId": "api",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "default": 10
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "default": 0
+            }
+          },
+          {
+            "name": "tags",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of cats",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Cat"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/api/tags": {
+      "get": {
+        "description": "Will return all cats",
+        "tags": ["API"],
+        "operationId": "tags",
+        "responses": {
+          "200": {
+            "description": "List of tags",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/api/count": {
+      "get": {
+        "description": "Count how many cat",
+        "tags": ["API"],
+        "operationId": "count",
+        "responses": {
+          "200": {
+            "description": "Count of cats",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "number": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -2,10 +2,11 @@ const { bootstrapServer } = require('@beelab/toolbox');
 
 bootstrapServer({
     api: require('./config/api.json'),
-    cache: false,
-    pwa: true,
+    apiPrefix: '',
+    cache: true,
+    pwa: false,
     localQuery: {
-        items: __dirname + '/data/items.db',
+        cats: __dirname + '/data/cats.db',
     },
     publicDir: 'dist',
 });

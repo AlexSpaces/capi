@@ -34,6 +34,16 @@ module.exports = class CRUDRepository {
         return query.result;
     }
 
+    async findOne(params = {}) {
+        const query = await this.requester.query({
+            collection: this.collection,
+            type: 'findOne',
+            params
+        });
+
+        return query.result;
+    }
+
     async count(params) {
         const query = await this.requester.query({
             collection: this.collection,

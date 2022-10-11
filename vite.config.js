@@ -16,7 +16,12 @@ export default defineConfig(({ mode }) => {
         config.server = {
             proxy: {
                 '/info': `http://web:${NODE_PORT}`,
+                '^/cat': `http://web:${NODE_PORT}`,
+                '^/cat/.*': `http://web:${NODE_PORT}`,
+                '^/c': `http://web:${NODE_PORT}`,
+                '^/c/.*': `http://web:${NODE_PORT}`,
                 '^/api/.*': `http://web:${NODE_PORT}`,
+                '^/doc.*': `http://web:${NODE_PORT}`,
             }
         }
     }
