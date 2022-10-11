@@ -23,6 +23,10 @@ module.exports = {
             const limit = 1;
 
             const result = await repository.find({ tags: req.params.tag, ...params }, limit, skip);
+            if (!result) {
+                return send(req, res, 'Cat not found.', 404);
+            }
+
             cat = result[0];
         } else {
             const count = await repository.count(params);
@@ -30,6 +34,10 @@ module.exports = {
             const limit = 1;
 
             const result = await repository.find(params, limit, skip);
+            if (!result) {
+                return send(req, res, 'Cat not found.', 404);
+            }
+
             cat = result[0];
         }
 
@@ -70,7 +78,7 @@ module.exports = {
             res.write(buffer);
             res.end();
         } catch ({ message, code }) {
-            send(req, res, { code, message }, code);
+            send(req, res, { code, message }, code || 500);
         }
     },
 
