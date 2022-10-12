@@ -12,7 +12,7 @@ module.exports = {
         const html = req.query.html || false;
         const json = req.query.json || false;
 
-        let cat;
+        let cat = null;
         if (req.params.id && req.params.id.match(/\w{16}/)) {
             cat = await repository.findOne({ _id: req.params.id, ...params });
         } else if (req.params.id) {
@@ -23,10 +23,6 @@ module.exports = {
             const limit = 1;
 
             const result = await repository.find({ tags: req.params.tag, ...params }, limit, skip);
-            if (!result) {
-                return send(req, res, 'Cat not found.', 404);
-            }
-
             cat = result[0];
         } else {
             const count = await repository.count(params);
@@ -34,11 +30,11 @@ module.exports = {
             const limit = 1;
 
             const result = await repository.find(params, limit, skip);
-            if (!result) {
-                return send(req, res, 'Cat not found.', 404);
-            }
-
             cat = result[0];
+        }
+
+        if (!cat) {
+            return send(req, res, 'Cat not found.', 404);
         }
 
         if (json) {
