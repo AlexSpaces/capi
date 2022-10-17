@@ -130,9 +130,15 @@ module.exports = {
         const cats = await repository.find({ validated: true }, 9999, 0);
         let result = [];
 
-        cats.forEach(({ tags }) => result = result.concat(tags));
+        cats.forEach(({ tags }) => {
+            tags.forEach(tag => {
+                if (!result.includes(tag)) {
+                    result.push(tag);
+                }
+            })
+        });
 
-        send(req, res, result);
+        send(req, res, result.sort());
     },
 
     async count(req, res) {
