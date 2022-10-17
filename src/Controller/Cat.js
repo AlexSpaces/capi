@@ -18,15 +18,20 @@ module.exports = {
         } else if (req.params.id) {
             req.params.tag = req.params.id;
 
-            const count = await repository.count({ tags: req.params.tag, ...params });
-            const skip = Math.floor(Math.random() * (count + 1));
+            const query = req.params.tag.split(',').reduce((query, tags) => {
+                query.push({ tags });
+
+                return query;
+            }, []);
+            const count = await repository.count({ $and: query, ...params });
+            const skip = Math.floor(Math.random() * count);
             const limit = 1;
 
-            const result = await repository.find({ tags: req.params.tag, ...params }, limit, skip);
+            const result = await repository.find({ $and: query, ...params }, limit, skip);
             cat = result[0];
         } else {
             const count = await repository.count(params);
-            const skip = Math.floor(Math.random() * (count + 1));
+            const skip = Math.floor(Math.random() * count);
             const limit = 1;
 
             const result = await repository.find(params, limit, skip);
