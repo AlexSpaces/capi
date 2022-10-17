@@ -115,10 +115,18 @@ module.exports = {
 
     async api(req, res) {
         const repository = new CatRepository();
-        console.log(req.query.tags);
+        const params = { validated: true };
+
+        if (req.query.tags) {
+            params.$and = req.query.tags.split(',').reduce((query, tags) => {
+                query.push({ tags });
+
+                return query;
+            }, []);
+        }
 
         try {
-            send(req, res, await repository.find({ validated: true }, req.query.limit, req.query.skip));
+            send(req, res, await repository.find(params, req.query.limit, req.query.skip));
         } catch ({ message, code }) {
             send(req, res, { code, message }, code);
         }

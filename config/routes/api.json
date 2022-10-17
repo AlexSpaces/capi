@@ -26,10 +26,7 @@
             "name": "tags",
             "in": "query",
             "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
+              "type": "string"
             }
           }
         ],
