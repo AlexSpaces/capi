@@ -2,11 +2,35 @@ const fs = require('fs');
 const imageEditor = require('cataas-image-editor');
 const { send } = require("@tamia-web/tamia/modules/common/services/controller");
 
+const Requester = require("../Service/Request");
 const CatRepository = require("../Repository/Cat");
 
 module.exports = {
     async findCat(req, res) {
         const repository = new CatRepository();
+
+        if (req.headers['user-agent']) {
+            const event = req.params.id ? 'oneCat' : 'randomCat';
+            const values = req.params.id ? { id: req.params.id, ...req.query } : req.query;
+            Requester.post(
+                'https://analytics.boutdecode.fr/api/collect',
+                JSON.stringify({
+                    payload: {
+                        website: 'ba785fe5-03d6-4593-929b-ab1280a5be29',
+                        url: req.url,
+                        event_name: `${event}-${JSON.stringify(values)}`,
+                        event_type: event,
+                        event_value: JSON.stringify(values),
+                        hostname: req.headers['host'],
+                    },
+                    type: 'event'
+                }),
+                { headers: {
+                        'Content-Type': 'application/json',
+                        'User-Agent': req.headers['user-agent'],
+                    }}
+            );
+        }
 
         const params = { validated: true };
         const html = req.query.html || false;

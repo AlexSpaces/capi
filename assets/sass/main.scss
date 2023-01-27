@@ -22,7 +22,9 @@ body {
 .home-banner {
     position: relative;
     width: 100%;
-    min-height: 450px;
+    min-height: 600px;
+    background: url("/images/banner.png");
+    background-size: cover;
 }
 
 .home-banner img {

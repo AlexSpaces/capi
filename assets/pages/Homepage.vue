@@ -2,8 +2,6 @@
     <TopNavbar/>
 
     <div class="home-banner">
-        <img v-for="cat in cats" :src="cat">
-
         <div class="home-banner-content-container">
             <div class="home-banner-content container">
                 <h1>CATAAS</h1>
@@ -186,11 +184,5 @@ import Icon from "../modules/ui/components/elements/Icon.vue";
 import { ref } from "vue";
 
 const count = ref(0);
-let tmpCats = [];
-for (let i = 0; i < 30; i++) {
-    tmpCats.push('/cat?t=sq&time=' + (new Date()).getTime() + i);
-}
-const cats = ref(tmpCats);
-
 fetch('/api/count').then(response => response.json()).then(({ number }) => count.value = number);
 </script>
