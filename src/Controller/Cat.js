@@ -11,7 +11,7 @@ module.exports = {
 
         if (req.headers['user-agent']) {
             const event = req.params.id ? 'oneCat' : 'randomCat';
-            const values = req.params.id ? { id: req.params.id, ...req.query } : req.query;
+            const values = req.query;
             Requester.post(
                 'https://analytics.boutdecode.fr/api/collect',
                 JSON.stringify({
