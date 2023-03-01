@@ -18,8 +18,8 @@ module.exports = {
                     payload: {
                         website: 'ba785fe5-03d6-4593-929b-ab1280a5be29',
                         url: req.url,
-                        event_name: `${event}-${JSON.stringify(values)}`,
-                        event_type: event,
+                        event_name: event,
+                        event_type: 'api_call',
                         event_value: JSON.stringify(values),
                         hostname: req.headers['host'],
                     },
@@ -47,19 +47,13 @@ module.exports = {
 
                 return query;
             }, []);
-            const count = await repository.count({ $and: query, ...params });
-            const skip = Math.floor(Math.random() * count);
-            const limit = 1;
 
-            const result = await repository.find({ $and: query, ...params }, limit, skip);
-            cat = result[0];
+            const result = await repository.find({ $and: query, ...params }, 10000);
+            cat = result[Math.floor(Math.random() * result.length)];
         } else {
-            const count = await repository.count(params);
-            const skip = Math.floor(Math.random() * count);
-            const limit = 1;
-
-            const result = await repository.find(params, limit, skip);
-            cat = result[0];
+            const result = await repository.find(params, 10000);
+            const notGif = result.filter(({ mimetype }) => mimetype !== 'image/gif');
+            cat = notGif[Math.floor(Math.random() * notGif.length)];
         }
 
         if (!cat) {
