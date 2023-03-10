@@ -35,6 +35,8 @@ module.exports = {
         const params = { validated: true };
         const html = req.query.html || false;
         const json = req.query.json || false;
+        req.params.id = req.params.id ? req.params.id.split('.')[0] : undefined;
+        req.params.text = req.params.text ? req.params.text.split('.')[0]: undefined;
 
         let cat = null;
         if (req.params.id && req.params.id.match(/\w{16}/)) {

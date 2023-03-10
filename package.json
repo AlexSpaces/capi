@@ -20,6 +20,7 @@
     "nedb": "^1.8.0"
   },
   "devDependencies": {
+    "@babel/register": "^7.21.0",
     "@vitejs/plugin-vue": "^2.2.0",
     "chart.js": "^3.9.1",
     "docker-publisher": "^0.6.0",
