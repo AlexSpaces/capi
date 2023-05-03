@@ -10,18 +10,13 @@ module.exports = {
         const repository = new CatRepository();
 
         if (req.headers['user-agent']) {
-            const event = req.params.id ? 'oneCat' : 'randomCat';
-            const values = req.query;
             Requester.post(
                 'https://analytics.boutdecode.fr/api/send',
                 JSON.stringify({
                     payload: {
                         website: 'ba785fe5-03d6-4593-929b-ab1280a5be29',
                         url: req.url,
-                        event_name: event,
-                        event_type: 'api_call',
-                        event_value: JSON.stringify(values),
-                        referrer: "",
+                        referrer: req.headers['referer'] || '',
                         hostname: req.headers['host'],
                     },
                     type: 'event'
