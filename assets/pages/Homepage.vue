@@ -17,14 +17,14 @@
         <p class="alert alert-success">
             Hey ! Do you like Cataas? Do you want to support the project?
 
-            <a class="btn btn-primary ml-4" href="https://www.buymeacoffee.com/kevinbalicot" target="_blank">Buy me a beer 🍺</a>
+            <a class="btn btn-primary ml-4" href="https://www.buymeacoffee.com/kevinbalicot" target="_blank" data-umami-event="Donate button">Buy me a beer 🍺</a>
 
             <br><br>
             <Icon icon="exclamation-triangle"/> Cataas is in under recovery mode, a new server and a new stack are coming soon ;)
         </p>
 
         <h2 class="mt-4">API</h2>
-        <p class="alert alert-info">You need doc? Please visite our <a href="/doc.html">Open API</a> documentation page.</p>
+        <p class="alert alert-info">You need doc? Please visite our <a href="/doc.html" data-umami-event="Doc button">Open API</a> documentation page.</p>
 
         <hr/>
 

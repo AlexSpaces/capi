@@ -13,7 +13,7 @@ module.exports = {
             const event = req.params.id ? 'oneCat' : 'randomCat';
             const values = req.query;
             Requester.post(
-                'https://analytics.boutdecode.fr/api/collect',
+                'https://analytics.boutdecode.fr/api/send',
                 JSON.stringify({
                     payload: {
                         website: 'ba785fe5-03d6-4593-929b-ab1280a5be29',
@@ -21,6 +21,7 @@ module.exports = {
                         event_name: event,
                         event_type: 'api_call',
                         event_value: JSON.stringify(values),
+                        referrer: "",
                         hostname: req.headers['host'],
                     },
                     type: 'event'
